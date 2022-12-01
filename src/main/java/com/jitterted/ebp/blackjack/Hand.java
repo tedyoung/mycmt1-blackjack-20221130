@@ -21,6 +21,8 @@ public class Hand {
     }
 
     void drawFrom(Deck deck) {
+        // REQUIRE deck not empty
+        // REQUIRE not busted
         cards.add(deck.draw());
     }
 
@@ -63,7 +65,15 @@ public class Hand {
     }
 
     boolean beats(Hand hand) {
+        // [Pre-condition] REQUIRE: neither hand is busted --> if not THROW EXCEPTION
+        requireNoBustedHands(hand);
         return hand.value() < value();
+    }
+
+    private void requireNoBustedHands(Hand hand) {
+        if (isBusted() || hand.isBusted()) {
+            throw new IllegalStateException();
+        }
     }
 
     boolean pushes(Hand hand) {

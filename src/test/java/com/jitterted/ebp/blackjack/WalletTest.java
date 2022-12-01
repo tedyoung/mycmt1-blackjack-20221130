@@ -1,5 +1,6 @@
 package com.jitterted.ebp.blackjack;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -12,5 +13,16 @@ public class WalletTest {
 
         assertThat(wallet.isEmpty())
                 .isTrue();
+    }
+
+    @Test
+    @Disabled
+    void newWalletWhenAddMoneyThenIsNotEmpty() {
+        Wallet wallet = new Wallet();
+
+        wallet.addMoney(1);
+
+        assertThat(wallet.isEmpty())
+                .isFalse();
     }
 }

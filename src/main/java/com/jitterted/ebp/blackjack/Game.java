@@ -12,10 +12,10 @@ import static org.fusesource.jansi.Ansi.ansi;
 
 public class Game {
 
-    private final Deck deck;
+    private final Deck deck; // unconstrained? nope
 
-    private final List<Card> dealerHand = new ArrayList<>();
-    private final List<Card> playerHand = new ArrayList<>();
+    private final List<Card> dealerHand = new ArrayList<>(); // unconstrained? yes. involved in behavior? yes. Does Game have behavior other than for dealerHand? yes.
+    private final List<Card> playerHand = new ArrayList<>(); // unconstrained? yes. involved in behavior? yes. Does Game have behavior other than for playerHand? yes.
 
     public static void main(String[] args) {
         displayWelcome();

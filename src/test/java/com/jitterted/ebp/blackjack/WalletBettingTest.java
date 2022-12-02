@@ -8,8 +8,7 @@ public class WalletBettingTest {
 
     @Test
     void walletWithBalance12WhenBet8ThenBalanceIs4() {
-        Wallet wallet = new Wallet();
-        wallet.addMoney(12);
+        Wallet wallet = createWalletWithInitialAmountOf(12);
 
         wallet.bet(8);
 
@@ -19,8 +18,7 @@ public class WalletBettingTest {
 
     @Test
     void walletWithBalance27Bet7And9ThenBalanceIs11() {
-        Wallet wallet = new Wallet();
-        wallet.addMoney(27);
+        Wallet wallet = createWalletWithInitialAmountOf(27);
 
         wallet.bet(7);
         wallet.bet(9);
@@ -31,8 +29,7 @@ public class WalletBettingTest {
 
     @Test
     void betFullBalanceThenWalletIsEmpty() {
-        Wallet wallet = new Wallet();
-        wallet.addMoney(73);
+        Wallet wallet = createWalletWithInitialAmountOf(73);
 
         wallet.bet(73);
 
@@ -42,14 +39,25 @@ public class WalletBettingTest {
 
     @Test
     void betMoreThanBalanceThrowsException() throws Exception {
-        Wallet wallet = new Wallet();
-        wallet.addMoney(15);
+        Wallet wallet = createWalletWithInitialAmountOf(15);
 
         assertThatThrownBy(() -> {
             wallet.bet(16);
         }).isInstanceOf(IllegalStateException.class);
-
     }
+
+    private static Wallet createWalletWithInitialAmountOf(int initialAmount) {
+        Wallet wallet = new Wallet();
+        wallet.addMoney(initialAmount);
+        return wallet;
+    }
+
+    // ?? can we place this bet ??
+    // if (wallet.balance() >= betAmount) { <-- FEATURE ENVY: do canBet(betAmount) instead
+    //   wallet.bet(betAmount)
+    // } else {
+    //   display("Not enough money to bet");
+    // }
 
 }
 
